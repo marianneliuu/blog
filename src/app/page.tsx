@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
-      <h1>Homebcbhd</h1>
+      <h1 className="font-bold">Home</h1>
     </main>
   );
 }
