@@ -1,10 +1,11 @@
 import Navbar from "@/components/navbar";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
-      <h1 className="font-bold">Home</h1>
+      <h1>Home</h1>
     </main>
   );
 }
