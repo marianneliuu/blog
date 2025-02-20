@@ -15,10 +15,10 @@ export default function Home() {
       </div>
       <div className="bg-stone-100 min-h-10 mt-10"></div>
       <div className="flex flex-row flex-wrap">
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
+        <BlogCard title={"title1"} description={"fs"} imageURL={"/testimage.jpg"} />
+        <BlogCard title={"title2"} description={"fs2"} imageURL={"/testimage.jpg"} />
+        <BlogCard title={"title3"} description={"fs3"} imageURL={"/testimage.jpg"} />
+        <BlogCard title={"title4"} description={"fs4"} imageURL={"/testimage.jpg"} />
       </div>
     </>
   );
