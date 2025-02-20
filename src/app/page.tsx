@@ -1,5 +1,6 @@
 import BlogCard from "@/components/blog-card";
 import Image from "next/image";
+import { blogData } from "@/blog-data";
 
 export default function Home() {
   return (
@@ -15,10 +16,9 @@ export default function Home() {
       </div>
       <div className="bg-stone-100 min-h-10 mt-10"></div>
       <div className="flex flex-row flex-wrap">
-        <BlogCard title={"title1"} description={"fs"} imageURL={"/testimage.jpg"} />
-        <BlogCard title={"title2"} description={"fs2"} imageURL={"/testimage.jpg"} />
-        <BlogCard title={"title3"} description={"fs3"} imageURL={"/testimage.jpg"} />
-        <BlogCard title={"title4"} description={"fs4"} imageURL={"/testimage.jpg"} />
+        {blogData.map((blog) => (
+          <BlogCard key={blog.id} title={blog.title} description={blog.description} imageURL={blog.imageURL} />
+        ))}
       </div>
     </>
   );
