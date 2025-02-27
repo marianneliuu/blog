@@ -2,7 +2,7 @@ import { blogData } from "@/blog-data";
 import Image from "next/image";
 
 interface BlogProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 function formatDate(date: Date) {
