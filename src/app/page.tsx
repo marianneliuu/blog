@@ -17,7 +17,13 @@ export default function Home() {
       <div className="bg-stone-100 min-h-10 mt-10"></div>
       <div className="flex flex-row flex-wrap">
         {blogData.map((blog) => (
-          <BlogCard key={blog.id} title={blog.title} description={blog.description} imageURL={blog.imageURL} />
+          <BlogCard
+            key={blog.id}
+            title={blog.title}
+            description={blog.description}
+            imageURL={blog.imageURL}
+            slug={blog.slug}
+          />
         ))}
       </div>
     </>
