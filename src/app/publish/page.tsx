@@ -131,13 +131,13 @@ export default function Publish() {
             <FormField
               control={form.control}
               name="imageURL"
-              render={({ field }) => (
+              render={() => (
                 <FormItem>
                   <FormLabel>Cover Image</FormLabel>
                   <FormControl>
                     <Input
-                      {...field}
                       type="file"
+                      accept="image/*"
                       disabled={imageUploading}
                       onChange={(e) => handleImageUpload(e, "imageURL")}
                     />

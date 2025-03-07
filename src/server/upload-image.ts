@@ -4,7 +4,9 @@ import { put } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 
 export const uploadImage = async (file: File) => {
-  const blob = await put(file.name, file, {
+  // add unique identifier to filename
+  const filename = `${Date.now()}-${file.name}`;
+  const blob = await put(filename, file, {
     access: "public",
   });
 
