@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-export type Blog = {
+export type BlogSchema = {
   title: string;
   slug: string;
   author: string;
@@ -12,11 +12,11 @@ export type Blog = {
   contentImageURL: string;
 };
 
-export const BlogSchema = new Schema<Blog>({
+export const BlogSchema = new Schema<BlogSchema>({
   title: { type: String, required: true },
   slug: { type: String, required: true },
   author: { type: String, required: true },
-  date: { type: Date, required: true, default: Date.now },
+  date: { type: Date, required: true },
   description: { type: String, required: true },
   content: { type: String, required: true },
   playButtonLabel: { type: String, required: true },
@@ -26,4 +26,4 @@ export const BlogSchema = new Schema<Blog>({
 
 BlogSchema.index({ slug: 1 }, { unique: true });
 
-export const BlogModel = mongoose.model<Blog>("Blog", BlogSchema, "blogs");
+export const BlogModel = mongoose.models.Blog || mongoose.model<BlogSchema>("Blog", BlogSchema, "blogs");

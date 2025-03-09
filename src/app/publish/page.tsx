@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { addBlog } from "@/server/blog-actions";
 import { uploadImage } from "@/server/upload-image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const formSchema = z.object({
+const BlogFormSchema = z.object({
   title: z.string().nonempty(),
   author: z.string().nonempty(),
   description: z.string().nonempty(),
@@ -20,11 +21,13 @@ const formSchema = z.object({
   contentImageURL: z.string().nonempty(),
 });
 
+export type BlogFormSchema = z.infer<typeof BlogFormSchema>;
+
 export default function Publish() {
   const [imageUploading, setImageUploading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof BlogFormSchema>>({
+    resolver: zodResolver(BlogFormSchema),
     defaultValues: {
       title: "",
       author: "",
@@ -54,8 +57,13 @@ export default function Publish() {
     }
   };
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: BlogFormSchema) => {
+    try {
+      await addBlog(data);
+    } catch (error) {
+      console.log(error);
+      form.setError("contentImageURL", { message: "Failed to publish blog" });
+    }
   };
 
   return (
