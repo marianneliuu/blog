@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -59,10 +60,10 @@ export default function Publish() {
 
   return (
     <div className="flex items-start justify-center">
-      <div className="flex flex-col justify-center items-center min-w-[600px] w-1/2">
+      <div className="flex flex-col justify-center items-center w-full min-w-[200px] max-w-[600px] mx-1">
         <h1 className="text-lg font-extralight mb-7">Publish!</h1>
         <Form {...form}>
-          <form className="w-full space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="w-full space-y-2 pb-10" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="title"
@@ -120,7 +121,7 @@ export default function Publish() {
               name="playButtonLabel"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Play Button</FormLabel>
+                  <FormLabel>Play Button Lyric</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -146,6 +147,27 @@ export default function Publish() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="contentImageURL"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Content Image</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      disabled={imageUploading}
+                      onChange={(e) => handleImageUpload(e, "contentImageURL")}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex justify-end pt-5">
+              <Button type="submit">Submit</Button>
+            </div>
           </form>
         </Form>
       </div>
