@@ -1,5 +1,10 @@
-import { blogData } from "@/blog-data";
+"use client";
+
+import { BlogSchema } from "@/database/blog-model";
+import { getBlogBySlug } from "@/server/blog-actions";
 import Image from "next/image";
+import { use } from "react";
+import useSWR from "swr";
 
 interface BlogProps {
   params: Promise<{ slug: string }>;
@@ -13,25 +18,28 @@ function formatDate(date: Date) {
   return `${mm}.${dd}.${yy}`;
 }
 
-export default async function Blog(props: BlogProps) {
-  const { slug } = await props.params;
+export default function Blog(props: BlogProps) {
+  const { slug } = use(props.params);
 
-  const selectedBlog = blogData.find((blog) => blog.slug === slug);
+  const { data, error, isLoading } = useSWR<BlogSchema>(`/blogs/${slug}`, () => getBlogBySlug(slug));
 
-  if (!selectedBlog) {
-    return <div>No blog found</div>;
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!data || error) {
+    console.log(error);
+    return <div>Error Loading Blog</div>;
   }
 
   return (
     <div className="flex flex-col items-center mx-5 mt-28 mb-28">
-      <h1 className="text-4xl">{selectedBlog.title}</h1>
-      <h2 className="font-extralight text-lg mt-4">{selectedBlog.author}</h2>
-      <h2 className="font-extralight mb-40">{formatDate(selectedBlog.date)}</h2>
+      <h1 className="text-4xl">{data.title}</h1>
+      <h2 className="font-extralight text-lg mt-4">{data.author}</h2>
+      <h2 className="font-extralight mb-40">{formatDate(data.date)}</h2>
       <div className="flex flex-row items-start mt-8 w-full">
-        <p className="flex-grow text-lg leading-relaxed whitespace-pre-line">{selectedBlog.content}</p>
+        <p className="flex-grow text-lg leading-relaxed whitespace-pre-line">{data.content}</p>
         <Image
-          src={selectedBlog.contentImageURL}
-          alt={selectedBlog.title}
+          src={data.contentImageURL}
+          alt={data.title}
           width={0}
           height={0}
           sizes="100vw"

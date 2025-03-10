@@ -1,8 +1,21 @@
+"use client";
+
 import BlogCard from "@/components/blog-card";
+import { BlogSchema } from "@/database/blog-model";
+import { getAllBlogs } from "@/server/blog-actions";
 import Image from "next/image";
-import { blogData } from "@/blog-data";
+import useSWR from "swr";
 
 export default function Home() {
+  const { data, error, isLoading } = useSWR<BlogSchema[]>("/", getAllBlogs, {});
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!data || error) {
+    console.log(error);
+    return <div>Error Loading Blogs</div>;
+  }
+
   return (
     <>
       <div className="h-[calc(100vh-126px)] flex flex-row w-full min-h-96">
@@ -16,9 +29,9 @@ export default function Home() {
       </div>
       <div className="bg-stone-100 min-h-10 mt-10"></div>
       <div className="flex flex-row flex-wrap">
-        {blogData.map((blog) => (
+        {data.map((blog) => (
           <BlogCard
-            key={blog.id}
+            key={blog.slug}
             title={blog.title}
             description={blog.description}
             imageURL={blog.imageURL}

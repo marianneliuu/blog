@@ -26,4 +26,5 @@ export const BlogSchema = new Schema<BlogSchema>({
 
 BlogSchema.index({ slug: 1 }, { unique: true });
 
-export const BlogModel = mongoose.models.Blog || mongoose.model<BlogSchema>("Blog", BlogSchema, "blogs");
+export const BlogModel =
+  (mongoose.models.Blog as mongoose.Model<BlogSchema>) || mongoose.model<BlogSchema>("Blog", BlogSchema, "blogs");

@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const BlogFormSchema = z.object({
   title: z.string().nonempty(),
@@ -24,6 +25,7 @@ const BlogFormSchema = z.object({
 export type BlogFormSchema = z.infer<typeof BlogFormSchema>;
 
 export default function Publish() {
+  const router = useRouter();
   const [imageUploading, setImageUploading] = useState(false);
 
   const form = useForm<z.infer<typeof BlogFormSchema>>({
@@ -59,7 +61,8 @@ export default function Publish() {
 
   const onSubmit = async (data: BlogFormSchema) => {
     try {
-      await addBlog(data);
+      const slug = await addBlog(data);
+      router.push(`/blogs/${slug}`);
     } catch (error) {
       console.log(error);
       form.setError("contentImageURL", { message: "Failed to publish blog" });
