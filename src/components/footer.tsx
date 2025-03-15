@@ -15,7 +15,7 @@ export default function Footer() {
             alt="dance!"
           />
         </DialogTrigger>
-        <DialogContent className="flex flex-col items-center">
+        <DialogContent className="flex flex-col items-center w-72">
           <DialogHeader>
             <DialogTitle>You found me!</DialogTitle>
           </DialogHeader>
