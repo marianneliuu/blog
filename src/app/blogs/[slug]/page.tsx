@@ -38,7 +38,7 @@ export default function Blog(props: BlogProps) {
       <h2 className="font-extralight mb-40">{formatDate(data.date)}</h2>
       <div className="flex flex-row items-start mt-8 w-full">
         <p className="flex-grow text-lg leading-relaxed whitespace-pre-line">{data.content}</p>
-        <div className="flex flex-col items-center justify-between min-w-[33%] ml-20 h-screen sticky top-0">
+        <div className="flex flex-col items-center justify-between min-w-[33%] max-w-[33%] ml-20 min-h-screen sticky top-0">
           <Image
             src={data.contentImageURL}
             alt={data.title}
@@ -47,7 +47,7 @@ export default function Blog(props: BlogProps) {
             sizes="100vw"
             className="w-full object-contain mt-14"
           />
-          <MusicToggle className="mb-20 italic font-extralight" variant="outline">
+          <MusicToggle className="mt-14 mb-20 italic font-extralight" variant="outline">
             &ldquo;{data.playButtonLabel}&rdquo;
           </MusicToggle>
         </div>
