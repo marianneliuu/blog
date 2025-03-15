@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "2zvpvbhxfhkylxac.public.blob.vercel-storage.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "media1.tenor.com",
+        port: "",
+      },
     ],
   },
 };

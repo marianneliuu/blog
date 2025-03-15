@@ -1,5 +1,6 @@
 "use client";
 
+import MusicToggle from "@/components/music-toggle";
 import { BlogSchema } from "@/database/blog-model";
 import { getBlogBySlug } from "@/server/blog-actions";
 import Image from "next/image";
@@ -31,20 +32,25 @@ export default function Blog(props: BlogProps) {
   }
 
   return (
-    <div className="flex flex-col items-center mx-5 mt-28 mb-28">
+    <div className="flex flex-col items-center mx-5 mt-28">
       <h1 className="text-4xl">{data.title}</h1>
       <h2 className="font-extralight text-lg mt-4">{data.author}</h2>
       <h2 className="font-extralight mb-40">{formatDate(data.date)}</h2>
       <div className="flex flex-row items-start mt-8 w-full">
         <p className="flex-grow text-lg leading-relaxed whitespace-pre-line">{data.content}</p>
-        <Image
-          src={data.contentImageURL}
-          alt={data.title}
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-1/3 object-contain ml-20 mb-4 sticky top-14"
-        />
+        <div className="flex flex-col items-center justify-between min-w-[33%] ml-20 h-screen sticky top-0">
+          <Image
+            src={data.contentImageURL}
+            alt={data.title}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full object-contain mt-14"
+          />
+          <MusicToggle className="mb-20 italic font-extralight" variant="outline">
+            &ldquo;{data.playButtonLabel}&rdquo;
+          </MusicToggle>
+        </div>
       </div>
     </div>
   );
