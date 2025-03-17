@@ -12,8 +12,8 @@ export default function Footer() {
       <Dialog>
         <DialogTrigger>
           <Image
-            className="w-5 scale-x-[-1]"
-            src="https://media1.tenor.com/m/JJ36Rzh8qoQAAAAC/ning-nang.gif"
+            className="w-7 scale-x-[-1]"
+            src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
             width={424}
             height={498}
             alt="dance!"
@@ -25,7 +25,7 @@ export default function Footer() {
           </DialogHeader>
           <Image
             className="w-64 scale-x-[-1]"
-            src="https://media1.tenor.com/m/JJ36Rzh8qoQAAAAC/ning-nang.gif"
+            src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
             width={424}
             height={498}
             alt="dance!"
