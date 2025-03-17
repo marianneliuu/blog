@@ -4,6 +4,7 @@ import MusicToggle from "@/components/music-toggle";
 import { BlogSchema } from "@/database/blog-model";
 import { getBlogBySlug } from "@/server/blog-actions";
 import Image from "next/image";
+import { redirect, useRouter } from "next/navigation";
 import { use } from "react";
 import useSWR from "swr";
 
@@ -24,11 +25,13 @@ export default function Blog(props: BlogProps) {
 
   const { data, error, isLoading } = useSWR<BlogSchema>(`/blogs/${slug}`, () => getBlogBySlug(slug));
 
+  const router = useRouter();
+
   if (isLoading) return <div>Loading...</div>;
 
   if (!data || error) {
     console.log(error);
-    return <div>Error Loading Blog</div>;
+    return router.replace("/not-found");
   }
 
   return (
