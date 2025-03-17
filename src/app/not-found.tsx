@@ -41,6 +41,9 @@ export default function NotFound() {
     ];
     platforms.forEach((platform) => World.add(world, platform));
 
+    const ball = Bodies.circle(203, 400, 10, { restitution: 0.8, render: { fillStyle: "white" } });
+    World.add(world, ball);
+
     const character = Bodies.rectangle(400, 300, 60, 60, {
       render: {
         sprite: {
