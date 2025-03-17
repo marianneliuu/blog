@@ -4,7 +4,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 
 export default function Footer() {
   return (
-    <div className="w-full h-20 mt-14 px-10 flex justify-between items-center bg-stone-100 text-sm font-extralight">
+    <div className="relative w-full h-16 mt-14 px-10 flex justify-between items-center bg-stone-100 text-sm font-extralight">
+      <div
+        className="absolute inset-0 w-full h-full opacity-30 bg-cover bg-center"
+        style={{ backgroundImage: "url('https://media1.tenor.com/m/RCu7qA-pVOwAAAAd/water-sparkling.gif')" }}
+      ></div>
       <Dialog>
         <DialogTrigger>
           <Image
