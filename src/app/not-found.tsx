@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 export default function NotFound() {
   const sceneRef = useRef(null);
   const [engine] = useState(Engine.create());
+  const keysPressed = useRef<Record<string, boolean>>({});
+  const singleKeyLock = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
     const render = Render.create({
@@ -44,6 +46,7 @@ export default function NotFound() {
     const ball = Bodies.circle(203, 400, 10, { restitution: 0.8, render: { fillStyle: "white" } });
     World.add(world, ball);
 
+    // Character
     const character = Bodies.rectangle(400, 300, 60, 60, {
       render: {
         sprite: {
@@ -55,6 +58,7 @@ export default function NotFound() {
     });
     World.add(world, character);
 
+    // Mouse control
     const mouse = Mouse.create(render.canvas);
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse,
@@ -63,43 +67,62 @@ export default function NotFound() {
         render: { visible: false },
       },
     });
-
-    document.addEventListener("keydown", (event) => {
-      const { x, y } = character.velocity;
-      switch (event.key) {
-        case "w":
-          Body.setVelocity(character, { x, y: -5 });
-          break;
-        case "a":
-          Body.setVelocity(character, { x: -5, y });
-          break;
-        case "s":
-          Body.setVelocity(character, { x, y: 5 });
-          break;
-        case "d":
-          Body.setVelocity(character, { x: 5, y });
-          break;
-        case " ":
-          Body.setVelocity(character, { x, y: -10 });
-          break;
-        default:
-          break;
-      }
-    });
-
     World.add(world, mouseConstraint);
+
+    // Keyboard controls
+    const handleKeyDown = (event: KeyboardEvent) => (keysPressed.current[event.key] = true);
+    const handleKeyUp = (event: KeyboardEvent) => {
+      singleKeyLock.current[event.key] = false;
+      keysPressed.current[event.key] = false;
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    // Game loop
+    const gameLoop = () => {
+      const { x, y } = character.velocity;
+      // move left
+      if (keysPressed.current["a"] || keysPressed.current["ArrowLeft"]) Body.setVelocity(character, { x: -5, y });
+      // move right
+      if (keysPressed.current["d"] || keysPressed.current["ArrowRight"]) Body.setVelocity(character, { x: 5, y });
+      // ground pound
+      if (
+        (keysPressed.current["s"] && !singleKeyLock.current["s"]) ||
+        (keysPressed.current["ArrowDown"] && !singleKeyLock.current["ArrowDown"])
+      ) {
+        Body.setVelocity(character, { x, y: 10 });
+        singleKeyLock.current["s"] = true;
+      }
+      // jump
+      if (
+        (keysPressed.current["w"] && !singleKeyLock.current["w"]) ||
+        (keysPressed.current[" "] && !singleKeyLock.current[" "]) ||
+        (keysPressed.current["ArrowUp"] && !singleKeyLock.current["ArrowUp"])
+      ) {
+        Body.setVelocity(character, { x, y: -10 });
+        singleKeyLock.current["w"] = true;
+        singleKeyLock.current[" "] = true;
+        singleKeyLock.current["ArrowUp"] = true;
+      }
+    };
+    const gameLoopInterval = setInterval(gameLoop, 1000 / 60);
 
     Render.run(render);
     const runner = Runner.create();
     Runner.run(runner, engine);
 
     return () => {
+      clearInterval(gameLoopInterval);
       Render.stop(render);
       Runner.stop(runner);
       World.clear(world, false);
       Engine.clear(engine);
       render.canvas.remove();
       render.textures = {};
+
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
   }, [engine]);
 
@@ -107,7 +130,7 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center h-full">
       <div className="flex flex-row justify-center items-center mb-4">
         <Image
-          className="w-5 h-5 scale-x-[-1]"
+          className="w-6 h-6 scale-x-[-1]"
           src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
           width={240}
           height={240}
@@ -115,7 +138,7 @@ export default function NotFound() {
         />
         <h1 className="text-lg font-extralight">I couldn&apos;t find your page, but you found my home!</h1>
         <Image
-          className="w-5 h-5 scale-x-[-1]"
+          className="w-6 h-6 scale-x-[-1]"
           src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
           width={240}
           height={240}
