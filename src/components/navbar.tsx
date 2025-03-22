@@ -8,7 +8,7 @@ export default function Navbar() {
         <Link href="/about">About</Link>
       </div>
       <Link href="/" className="text-2xl">
-        MAR
+        wonderlog
       </Link>
       <div className="flex flex-row justify-end space-x-8 flex-grow basis-0">
         <Link href="/contact">Contact</Link>
