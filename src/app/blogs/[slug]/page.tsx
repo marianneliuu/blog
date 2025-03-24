@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/loading";
 import MusicToggle from "@/components/music-toggle";
 import { BlogSchema } from "@/database/blog-model";
 import { getBlogBySlug } from "@/server/blog-actions";
@@ -27,7 +28,7 @@ export default function Blog(props: BlogProps) {
 
   const router = useRouter();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   if (!data || error) {
     console.log(error);
