@@ -46,9 +46,8 @@ export default function Blog(props: BlogProps) {
           <Image
             src={data.contentImageURL}
             alt={data.title}
-            width={0}
-            height={0}
-            sizes="100vw"
+            width={data.contentImageURLWidth}
+            height={data.contentImageURLHeight}
             className="w-full object-contain mt-14"
           />
           <MusicToggle className="mt-14 mb-20 italic font-extralight" variant="outline">

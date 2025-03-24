@@ -14,7 +14,11 @@ const sanitizeBlog = (blog: BlogSchema): BlogSchema => ({
   content: blog.content,
   playButtonLabel: blog.playButtonLabel,
   imageURL: blog.imageURL,
+  imageURLWidth: blog.imageURLWidth,
+  imageURLHeight: blog.imageURLHeight,
   contentImageURL: blog.contentImageURL,
+  contentImageURLWidth: blog.contentImageURLWidth,
+  contentImageURLHeight: blog.contentImageURLHeight,
 });
 
 export const addBlog = async (blog: BlogFormSchema): Promise<string> => {

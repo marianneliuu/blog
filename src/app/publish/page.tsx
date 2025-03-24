@@ -19,10 +19,22 @@ const BlogFormSchema = z.object({
   content: z.string().nonempty(),
   playButtonLabel: z.string().nonempty(),
   imageURL: z.string().nonempty(),
+  imageURLWidth: z.number().nonnegative(),
+  imageURLHeight: z.number().nonnegative(),
   contentImageURL: z.string().nonempty(),
+  contentImageURLWidth: z.number().nonnegative(),
+  contentImageURLHeight: z.number().nonnegative(),
 });
 
 export type BlogFormSchema = z.infer<typeof BlogFormSchema>;
+
+const getImageDimensions = (url: string): Promise<{ width: number; height: number }> =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => resolve({ width: img.width, height: img.height });
+    img.onerror = reject;
+  });
 
 export default function Publish() {
   const router = useRouter();
@@ -37,7 +49,11 @@ export default function Publish() {
       content: "",
       playButtonLabel: "",
       imageURL: "",
+      imageURLWidth: 0,
+      imageURLHeight: 0,
       contentImageURL: "",
+      contentImageURLWidth: 0,
+      contentImageURLHeight: 0,
     },
   });
 
@@ -51,6 +67,10 @@ export default function Publish() {
     try {
       const blobUrl = await uploadImage(file);
       form.setValue(fieldName, blobUrl);
+
+      const { width, height } = await getImageDimensions(blobUrl);
+      form.setValue(`${fieldName}Width`, width);
+      form.setValue(`${fieldName}Height`, height);
     } catch (error) {
       form.setError(fieldName, { message: "Failed to upload image" });
       console.log(error);

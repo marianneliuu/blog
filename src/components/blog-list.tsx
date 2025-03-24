@@ -27,6 +27,8 @@ export default function BlogList() {
           title={blog.title}
           description={blog.description}
           imageURL={blog.imageURL}
+          imageURLWidth={blog.imageURLWidth}
+          imageURLHeight={blog.imageURLHeight}
           slug={blog.slug}
         />
       ))}
