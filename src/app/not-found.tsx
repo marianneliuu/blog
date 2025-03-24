@@ -3,6 +3,7 @@
 import { Bodies, Body, Engine, Mouse, MouseConstraint, Render, Runner, World } from "matter-js";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import quby from "../assets/quby.gif";
 
 export default function NotFound() {
   const sceneRef = useRef(null);
@@ -129,21 +130,9 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="flex flex-row justify-center items-center mb-4">
-        <Image
-          className="w-6 h-6 scale-x-[-1]"
-          src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
-          width={240}
-          height={240}
-          alt="dance!"
-        />
+        <Image className="w-6 h-6 scale-x-[-1]" src={quby} alt="dance!" />
         <h1 className="text-lg font-extralight">I couldn&apos;t find your page, but you found my home!</h1>
-        <Image
-          className="w-6 h-6 scale-x-[-1]"
-          src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
-          width={240}
-          height={240}
-          alt="dance!"
-        />
+        <Image className="w-6 h-6 scale-x-[-1]" src={quby} alt="dance!" />
       </div>
       <div ref={sceneRef} className="border border-gray-300" />
     </div>
