@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <div className="flex flex-row items-center">
       <div className="h-[60vh] w-2/5 bg-slate-400 relative overflow-hidden m-10">
-        <Image className="w-full h-full object-cover" src="/testimage.jpg" width={4284} height={5712} alt="test" />
+        <Image className="w-full h-full object-cover" src="/contact.jpg" width={4284} height={5712} alt="test" />
       </div>
       <div className="flex flex-col m-10">
         <h1 className="text-lg font-extralight">Contact Me !</h1>

@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       fontFamily: {
         "noto-serif-display": "Noto Serif Display, serif",
+        "playfair-display": "Playfair, serif",
+        "noto-serif": "Noto Serif, serif",
+        "cormorant-display": "Cormorant, serif",
       },
       borderRadius: {
         lg: "var(--radius)",

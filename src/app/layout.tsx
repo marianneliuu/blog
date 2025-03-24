@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="font-noto-serif-display min-h-screen flex flex-col">
+      <body className="font-cormorant-display min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 flex flex-col px-10">{children}</main>
         <Footer />
