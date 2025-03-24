@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import quby from "../assets/quby.gif";
 
 export default function Footer() {
   return (
@@ -11,25 +12,13 @@ export default function Footer() {
       ></div>
       <Dialog>
         <DialogTrigger>
-          <Image
-            className="w-7 scale-x-[-1]"
-            src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
-            width={424}
-            height={498}
-            alt="dance!"
-          />
+          <Image className="w-7 scale-x-[-1]" src={quby} alt="dance!" />
         </DialogTrigger>
         <DialogContent className="flex flex-col items-center w-72">
           <DialogHeader>
             <DialogTitle>You found me!</DialogTitle>
           </DialogHeader>
-          <Image
-            className="w-64 scale-x-[-1]"
-            src="https://media.tenor.com/kQjsTRbRQoYAAAAi/quby.gif"
-            width={424}
-            height={498}
-            alt="dance!"
-          />
+          <Image className="w-64 scale-x-[-1]" src={quby} alt="dance!" />
         </DialogContent>
       </Dialog>
 
