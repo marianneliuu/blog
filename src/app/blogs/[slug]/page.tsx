@@ -43,13 +43,15 @@ export default function Blog(props: BlogProps) {
       <div className="flex flex-row items-start w-full">
         <p className="flex-grow text-lg leading-relaxed whitespace-pre-line mt-14">{data.content}</p>
         <div className="flex flex-col items-center justify-between min-w-[33%] max-w-[33%] ml-20 min-h-screen sticky top-0">
-          <FadingImage
-            src={data.contentImageURL}
-            alt={data.title}
-            width={data.contentImageURLWidth}
-            height={data.contentImageURLHeight}
-            className="w-full object-contain mt-14"
-          />
+          <div className="w-fit h-fit bg-stone-100 mt-14">
+            <FadingImage
+              src={data.contentImageURL}
+              alt={data.title}
+              width={data.contentImageURLWidth}
+              height={data.contentImageURLHeight}
+              className="w-full object-contain"
+            />
+          </div>
           <MusicToggle className="mt-14 mb-20 italic font-extralight" variant="outline">
             &ldquo;{data.playButtonLabel}&rdquo;
           </MusicToggle>

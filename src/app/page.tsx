@@ -12,7 +12,7 @@ export default function Home() {
           <h2 className="text-lg font-extralight italic">slipping through our fingers</h2>
           <h1 className="text-3xl mb-1">From, Marianne</h1>
         </div>
-        <div className="h-full w-1/2 relative overflow-hidden">
+        <div className="h-full w-1/2 relative overflow-hidden bg-stone-100">
           <FadingImage className="w-full h-full object-cover" src={homepageImage} alt="cover" placeholder="blur" />
         </div>
       </div>

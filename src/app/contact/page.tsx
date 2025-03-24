@@ -6,7 +6,7 @@ import FadingImage from "@/components/fading-image";
 export default function Contact() {
   return (
     <div className="flex flex-row items-center">
-      <div className="h-[60vh] w-2/5 bg-slate-400 relative overflow-hidden m-10">
+      <div className="h-[60vh] w-2/5 bg-slate-400 relative overflow-hidden m-10 bg-stone-100">
         <FadingImage className="w-full h-full object-cover" src={contactImage} alt="contact" placeholder="blur" />
       </div>
       <div className="flex flex-col m-10">

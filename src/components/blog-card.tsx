@@ -16,7 +16,9 @@ interface BlogCardProps {
 export default function BlogCard(props: BlogCardProps) {
   return (
     <div className="min-w-1/3 w-1/3 px-10 pt-10">
-      <FadingImage src={props.imageURL} width={props.imageURLWidth} height={props.imageURLHeight} alt="test" />
+      <div className="w-fit h-fit bg-stone-100">
+        <FadingImage src={props.imageURL} width={props.imageURLWidth} height={props.imageURLHeight} alt="test" />
+      </div>
       <h1 className="text-2xl mt-3">{props.title}</h1>
       <h2 className="text-sm font-extralight">{props.description}</h2>
       <div className="mt-4">

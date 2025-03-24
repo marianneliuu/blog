@@ -4,7 +4,7 @@ import FadingImage from "@/components/fading-image";
 export default function About() {
   return (
     <div className="flex flex-col items-center max-h-full">
-      <div className="max-h-[50vh] w-3/4 bg-slate-400 relative overflow-hidden flex justify-center items-center">
+      <div className="max-h-[50vh] w-3/4 bg-stone-100 relative overflow-hidden flex justify-center items-center">
         <FadingImage className="w-full h-full object-cover" src={aboutImage} alt="about" placeholder="blur" />
       </div>
       <h1 className="flex mt-5 text-xl font-extralight">About This Blog</h1>
