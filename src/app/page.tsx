@@ -1,8 +1,8 @@
 "use client";
 
 import BlogList from "@/components/blog-list";
-import Image from "next/image";
 import homepageImage from "../assets/homepage.jpg";
+import FadingImage from "@/components/fading-image";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
           <h1 className="text-3xl mb-1">From, Marianne</h1>
         </div>
         <div className="h-full w-1/2 relative overflow-hidden">
-          <Image className="w-full h-full object-cover" src={homepageImage} alt="cover" placeholder="blur" />
+          <FadingImage className="w-full h-full object-cover" src={homepageImage} alt="cover" placeholder="blur" />
         </div>
       </div>
       <div className="bg-stone-100 min-h-10 mt-10"></div>

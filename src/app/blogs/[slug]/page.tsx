@@ -1,10 +1,10 @@
 "use client";
 
+import FadingImage from "@/components/fading-image";
 import Loading from "@/components/loading";
 import MusicToggle from "@/components/music-toggle";
 import { BlogSchema } from "@/database/blog-model";
 import { getBlogBySlug } from "@/server/blog-actions";
-import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 import { use } from "react";
 import useSWR from "swr";
@@ -43,7 +43,7 @@ export default function Blog(props: BlogProps) {
       <div className="flex flex-row items-start w-full">
         <p className="flex-grow text-lg leading-relaxed whitespace-pre-line mt-14">{data.content}</p>
         <div className="flex flex-col items-center justify-between min-w-[33%] max-w-[33%] ml-20 min-h-screen sticky top-0">
-          <Image
+          <FadingImage
             src={data.contentImageURL}
             alt={data.title}
             width={data.contentImageURLWidth}

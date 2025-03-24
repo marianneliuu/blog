@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Github, Icon, Instagram, Linkedin, Mail } from "lucide-react";
-import Image from "next/image";
 import contactImage from "../../assets/contact.jpg";
+import FadingImage from "@/components/fading-image";
 
 export default function Contact() {
   return (
     <div className="flex flex-row items-center">
       <div className="h-[60vh] w-2/5 bg-slate-400 relative overflow-hidden m-10">
-        <Image className="w-full h-full object-cover" src={contactImage} alt="contact" placeholder="blur" />
+        <FadingImage className="w-full h-full object-cover" src={contactImage} alt="contact" placeholder="blur" />
       </div>
       <div className="flex flex-col m-10">
         <h1 className="text-lg font-extralight">Contact Me !</h1>
